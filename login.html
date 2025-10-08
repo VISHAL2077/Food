@@ -1,0 +1,61 @@
+<!-- FILE: login.html -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FoodDrop — Login</title>
+<style>
+:root{--accent:#ff6b35;--bg:#f7f7f8;--card:#ffffff}
+*{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+body{margin:0;background:var(--bg);display:flex;align-items:center;justify-content:center;height:100vh}
+.card{background:var(--card);width:100%;max-width:420px;padding:28px;border-radius:12px;box-shadow:0 6px 18px rgba(20,20,40,.08)}
+h1{margin:0 0 12px;font-size:22px}
+.muted{color:#666;font-size:14px;margin-bottom:18px}
+label{display:block;font-size:13px;margin:8px 0 6px}
+input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e6ee;font-size:15px}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;border:none;font-weight:600;margin-top:18px;cursor:pointer}
+.row{display:flex;gap:8px}
+.link{color:var(--accent);cursor:pointer}
+.small{font-size:13px;color:#444;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Welcome back</h1>
+<div class="muted">Sign in to continue to FoodDrop — fast food & groceries</div>
+
+
+<label for="email">Email or phone</label>
+<input id="email" type="text" placeholder="you@example.com" />
+
+
+<label for="password">Password</label>
+<input id="password" type="password" placeholder="••••••••" />
+
+
+<button class="btn" id="loginBtn">Sign in</button>
+
+
+<div class="small">Don't have an account? <span class="link" id="signup">Create one</span></div>
+</div>
+
+
+<script>
+// Simple demo-only auth flow (no backend). Stores user name in localStorage.
+document.getElementById('loginBtn').addEventListener('click', ()=>{
+const email = document.getElementById('email').value.trim();
+const pwd = document.getElementById('password').value;
+if(!email || !pwd){alert('Please enter email and password');return}
+// For demo: pretend login succeeds
+const name = email.split('@')[0] || email;
+localStorage.setItem('fd_user', JSON.stringify({name, email}));
+// go to menu
+location.href = 'menu.html';
+});
+document.getElementById('signup').addEventListener('click', ()=>{
+alert('Sign up is not implemented in this demo — just enter any email/password to continue.');
+});
+</script>
+</body>
+</html>
